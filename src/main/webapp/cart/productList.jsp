@@ -62,7 +62,7 @@ $(document).ready(function(){
 							<tr>
 								<th>검색어</th>
 <!-- 								<td><select style="width: 200px;">
-										<option>선택하세요</option>
+										<option>선택하세요<rere/option>
 								</select></td> -->
 								<th>
 								<select id="query" name="query">
