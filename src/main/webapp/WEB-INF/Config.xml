@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!-- DB설정(Connection) -->   
+    <typeAliases> 
+       <typeAlias type="sist.com.bean.AdminProductBean" alias="adminPro"/>
+    </typeAliases> 
+    <mappers>
+      <!-- <mapper resource="sist/com/dao/apple-mapper.xml"/> -->
+      <mapper resource="sist/com/dao/cart-mapper.xml"/>
+    </mappers>
+</configuration>
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sist.com.bean.apple.cart">
+	<select id="loginPwCheck"  parameterType="java.lang.String" resultType="java.lang.String">
+	  	SELECT PW
+  		FROM PRODUCTADMINMEMBER
+  		WHERE ID=#{value}
+	</select>
+	
+<!-- 	<select id="selectProductList" resultType="adminPro">
+	SELECT * FROM ADMINPRODUCT
+	</select> -->
+	
+	<sql id="selectProduct">
+    SELECT P.ID,PK,PRODUCTNAME,PRODUCTPRICE,PRODUCTORIGIN,PRODUCTCATEGORY,FILENAME,REGDATE,M.NAME SELLER
+	FROM ADMINPRODUCT P, PRODUCTADMINMEMBER M
+	WHERE P.ID=M.ID
+	</sql>
+	
+	<select id="selectAdmin" resultType="adminPro" parameterType="String">
+		<include refid="selectProduct"></include>
+		AND P.ID=#{value}
+	</select>
+	
+	<select id="selectProductList" resultType="adminPro">
+		  <include refid="selectProduct"></include>
+	</select> 
+<!-- 	<insert id="insertProduct" parameterType="adminPro">
+		INSERT INTO  ADMINPRODUCT VALUES(
+			#{id},pk_seq.NEXTVAL,#{productName},#{productPrice},#{productOrigin},#{productCategory},#{fileName},SYSDATE
+		)
+	</insert> -->
+
+	<select id="adminProductInfo" parameterType="int" resultType="adminPro">
+	select ID,PK,PRODUCTNAME,PRODUCTPRICE,PRODUCTORIGIN,PRODUCTCATEGORY,FILENAME,REGDATE	
+	from ADMINPRODUCT
+	where pk=#{value}
+	</select>
+	
+	<insert id="adminProductAdd" parameterType="adminPro">
+	INSERT INTO ADMINPRODUCT VALUES(    
+	#{id},pk_seq.NEXTVAL,#{productName},#{productPrice},#{productOrigin},#{productCategory},#{fileName},SYSDATE)
+	</insert>
+
+	<update id="adminProductModify" parameterType="adminPro">
+	 UPDATE ADMINPRODUCT SET PRODUCTNAME=#{productName},
+	 PRODUCTPRICE=#{productPrice},
+	 PRODUCTORIGIN=#{productOrigin},
+	 PRODUCTCATEGORY=#{productCategory}
+	 <choose>
+	 <when test="fileName!=null">
+	 , 
+	 FILENAME=#{fileName}   
+	 </when>
+	 </choose>	 
+	 WHERE PK=#{pk}
+	</update>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
